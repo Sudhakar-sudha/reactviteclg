@@ -1,120 +1,120 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 
-const AddStudent = () => {
-  const [studentName, setStudentName] = useState('');
-  const [rollNo, setRollNo] = useState('');
-  const [students, setStudents] = useState([]);
-  const [message, setMessage] = useState('');
+// const AddStudent = () => {
+//   const [studentName, setStudentName] = useState('');
+//   const [rollNo, setRollNo] = useState('');
+//   const [students, setStudents] = useState([]);
+//   const [message, setMessage] = useState('');
 
-  // Fetch students from the backend
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/students');
-        const data = await response.json();
-        setStudents(data);
-      } catch (error) {
-        console.error('Error fetching students:', error);
-      }
-    };
+//   // Fetch students from the backend
+//   useEffect(() => {
+//     const fetchStudents = async () => {
+//       try {
+//         const response = await fetch('http://localhost:5000/api/students');
+//         const data = await response.json();
+//         setStudents(data);
+//       } catch (error) {
+//         console.error('Error fetching students:', error);
+//       }
+//     };
 
-    fetchStudents();
-  }, []);
+//     fetchStudents();
+//   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-    const studentData = { name: studentName, rollNo };
+//     const studentData = { name: studentName, rollNo };
 
-    try {
-      const response = await fetch('http://localhost:5000/api/students', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(studentData),
-      });
+//     try {
+//       const response = await fetch('http://localhost:5000/api/students', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(studentData),
+//       });
 
-      if (response.ok) {
-        setMessage('Student added successfully!');
-        setStudentName('');
-        setRollNo('');
-        // Refresh the list of students
-        const newStudent = await response.json();
-        setStudents([...students, newStudent]);
-      } else {
-        setMessage('Failed to add student.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setMessage('An error occurred while adding the student.');
-    }
-  };
+//       if (response.ok) {
+//         setMessage('Student added successfully!');
+//         setStudentName('');
+//         setRollNo('');
+//         // Refresh the list of students
+//         const newStudent = await response.json();
+//         setStudents([...students, newStudent]);
+//       } else {
+//         setMessage('Failed to add student.');
+//       }
+//     } catch (error) {
+//       console.error('Error:', error);
+//       setMessage('An error occurred while adding the student.');
+//     }
+//   };
 
-  return (
-    <div className="p-5">
-      <h1 className="text-4xl font-bold mb-5">Add Student</h1>
+//   return (
+//     <div className="p-5">
+//       <h1 className="text-4xl font-bold mb-5">Add Student</h1>
 
-      {/* Form to Add Student */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-lg font-medium mb-1">Student Name</label>
-          <input
-            type="text"
-            value={studentName}
-            onChange={(e) => setStudentName(e.target.value)}
-            placeholder="Enter student name"
-            className="border border-gray-300 p-2 rounded w-full"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-lg font-medium mb-1">Roll No</label>
-          <input
-            type="text"
-            value={rollNo}
-            onChange={(e) => setRollNo(e.target.value)}
-            placeholder="Enter roll number"
-            className="border border-gray-300 p-2 rounded w-full"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Add Student
-        </button>
-      </form>
-      {message && <p className="mt-4 text-lg">{message}</p>}
+//       {/* Form to Add Student */}
+//       <form onSubmit={handleSubmit} className="space-y-4">
+//         <div>
+//           <label className="block text-lg font-medium mb-1">Student Name</label>
+//           <input
+//             type="text"
+//             value={studentName}
+//             onChange={(e) => setStudentName(e.target.value)}
+//             placeholder="Enter student name"
+//             className="border border-gray-300 p-2 rounded w-full"
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label className="block text-lg font-medium mb-1">Roll No</label>
+//           <input
+//             type="text"
+//             value={rollNo}
+//             onChange={(e) => setRollNo(e.target.value)}
+//             placeholder="Enter roll number"
+//             className="border border-gray-300 p-2 rounded w-full"
+//             required
+//           />
+//         </div>
+//         <button
+//           type="submit"
+//           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+//         >
+//           Add Student
+//         </button>
+//       </form>
+//       {message && <p className="mt-4 text-lg">{message}</p>}
 
-      {/* Display Stored Students */}
-      <h2 className="text-2xl font-bold mt-10">Stored Students</h2>
-      {students.length > 0 ? (
-        <table className="table-auto w-full border-collapse border border-gray-200 mt-5">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 p-2">Name</th>
-              <th className="border border-gray-300 p-2">Roll No</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map((student, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 p-2">{student.name}</td>
-                <td className="border border-gray-300 p-2">{student.rollNo}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p className="mt-5 text-gray-500">No students added yet.</p>
-      )}
-    </div>
-  );
-};
+//       {/* Display Stored Students */}
+//       <h2 className="text-2xl font-bold mt-10">Stored Students</h2>
+//       {students.length > 0 ? (
+//         <table className="table-auto w-full border-collapse border border-gray-200 mt-5">
+//           <thead>
+//             <tr>
+//               <th className="border border-gray-300 p-2">Name</th>
+//               <th className="border border-gray-300 p-2">Roll No</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {students.map((student, index) => (
+//               <tr key={index}>
+//                 <td className="border border-gray-300 p-2">{student.name}</td>
+//                 <td className="border border-gray-300 p-2">{student.rollNo}</td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       ) : (
+//         <p className="mt-5 text-gray-500">No students added yet.</p>
+//       )}
+//     </div>
+//   );
+// };
 
-export default AddStudent;
+// export default AddStudent;
 
 
 // const express = require('express');
@@ -182,3 +182,178 @@ export default AddStudent;
 //     }
 //   });
   
+import React, { useState, useEffect } from "react";
+
+const AddStudent = () => {
+  const [studentName, setStudentName] = useState("");
+  const [rollNo, setRollNo] = useState("");
+  const [students, setStudents] = useState([]);
+  const [message, setMessage] = useState("");
+  const [editId, setEditId] = useState(null);
+
+  // Fetch list of students from the backend
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/studentdetails");
+        if (!response.ok) throw new Error("Failed to fetch students");
+        const data = await response.json();
+        setStudents(data);
+      } catch (error) {
+        console.error("Error fetching students:", error);
+      }
+    };
+    fetchStudents();
+  }, []);
+
+  // Handle form submission (add or update student)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const studentData = { username: studentName, password: rollNo };
+
+    try {
+      if (editId) {
+        // Edit student if editId is set
+        const response = await fetch(`http://localhost:3000/studentdetails/${editId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(studentData),
+        });
+
+        if (response.ok) {
+          setMessage("Student updated successfully!");
+          setStudents(students.map((student) => student._id === editId ? { ...student, ...studentData } : student));
+          setEditId(null); // Reset edit mode
+        } else {
+          setMessage("Failed to update student.");
+        }
+      } else {
+        // Add new student if editId is not set
+        const response = await fetch("http://localhost:3000/studentdetails", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(studentData),
+        });
+
+        if (response.ok) {
+          setMessage("Student added successfully!");
+          setStudents([...students, studentData]);
+        } else {
+          setMessage("Failed to add student.");
+        }
+      }
+
+      setStudentName("");
+      setRollNo("");
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage("An error occurred.");
+    }
+  };
+
+  // Handle editing a student
+  const handleEdit = (student) => {
+    setStudentName(student.username);
+    setRollNo(student.password);
+    setEditId(student._id);
+  };
+
+  // Handle deleting a student
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/studentdetails/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setStudents(students.filter((student) => student._id !== id));
+        setMessage("Student deleted successfully!");
+      } else {
+        setMessage("Failed to delete student.");
+      }
+    } catch (error) {
+      console.error("Error deleting student:", error);
+      setMessage("An error occurred while deleting the student.");
+    }
+  };
+
+  return (
+    <div className="p-5">
+      <h1 className="text-4xl font-bold mb-5">
+        {editId ? "Edit Student" : "Add Student"}
+      </h1>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-lg font-medium mb-1">Student Name</label>
+          <input
+            type="text"
+            value={studentName}
+            onChange={(e) => setStudentName(e.target.value)}
+            placeholder="Enter student name"
+            className="border border-gray-300 p-2 rounded w-full"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-lg font-medium mb-1">Password</label>
+          <input
+            type="text"
+            value={rollNo}
+            onChange={(e) => setRollNo(e.target.value)}
+            placeholder="Enter password"
+            className="border border-gray-300 p-2 rounded w-full"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          {editId ? "Update Student" : "Add Student"}
+        </button>
+      </form>
+
+      {message && <p className="mt-4 text-lg">{message}</p>}
+
+      <h2 className="text-2xl font-bold mt-10">Stored Students</h2>
+      {students.length > 0 ? (
+        <table className="table-auto w-full border-collapse border border-gray-200 mt-5">
+          <thead>
+            <tr>
+              <th className="border border-gray-300 p-2">Name</th>
+              <th className="border border-gray-300 p-2">Password</th>
+              <th className="border border-gray-300 p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr key={student._id}>
+                <td className="border border-gray-300 p-2">{student.username}</td>
+                <td className="border border-gray-300 p-2">{student.password}</td>
+                <td className="border border-gray-300 p-2 space-x-2">
+                  <button
+                    onClick={() => handleEdit(student)}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(student._id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="mt-5 text-gray-500">No students added yet.</p>
+      )}
+    </div>
+  );
+};
+
+export default AddStudent;
