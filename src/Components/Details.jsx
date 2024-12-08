@@ -7,7 +7,7 @@ const Details = () => {
   // Fetch student details from the backend
   useEffect(() => {
     // Replace with your backend API endpoint
-    fetch('/api/studentDetails')
+    fetch('https://backendsampleclg.onrender.com/studentDetails')
       .then((response) => response.json())
       .then((data) => {
         setStudentDetails(data); // Assuming the response contains student details

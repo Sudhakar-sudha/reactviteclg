@@ -7,7 +7,7 @@ const Home = () => {
   // Fetching student details from the backend (replace with actual API endpoint)
   useEffect(() => {
     // Example API endpoint (replace with actual backend URL)
-    fetch('/api/studentDetails')
+    fetch('https://backendsampleclg.onrender.com/studentDetails')
       .then((response) => response.json())
       .then((data) => {
         setStudentDetails(data); // Assuming the response is an array or object of student details
@@ -34,12 +34,12 @@ const Home = () => {
       <div className="space-y-6">
         <div className="flex justify-between">
           <span className="font-semibold text-lg">Student Name:</span>
-          <span>{studentDetails.name}</span>
+          <span>{studentDetails.username}</span>
         </div>
 
         <div className="flex justify-between">
           <span className="font-semibold text-lg">Roll No:</span>
-          <span>{studentDetails.rollNo}</span>
+          <span>{studentDetails.password}</span>
         </div>
 
         <div className="flex justify-between">

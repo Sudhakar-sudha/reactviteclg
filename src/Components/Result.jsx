@@ -8,7 +8,7 @@ const Result = () => {
   // Fetching internal and external marks from the backend
   useEffect(() => {
     // Replace with your backend API endpoint to fetch marks
-    fetch('/api/result') // Endpoint to get the student's marks
+    fetch('https://backendsampleclg.onrender.com/studentDetails') // Endpoint to get the student's marks
       .then((response) => response.json())
       .then((data) => {
         if (data) {

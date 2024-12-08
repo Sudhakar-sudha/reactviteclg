@@ -15,15 +15,12 @@ const AddInternalMarks = () => {
   });
 
   useEffect(() => {
-    // Fetch student details (rollNo and studentName) from the database here
-    // For the sake of this example, we are setting dummy data
-
+    // Simulated fetched data
     const fetchedStudentData = {
       rollNo: '123456',
       studentName: 'John Doe',
     };
 
-    // Update the state with fetched data
     setMarks((prevMarks) => ({
       ...prevMarks,
       rollNo: fetchedStudentData.rollNo,
@@ -42,148 +39,156 @@ const AddInternalMarks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted Marks:', marks);
-
-    // Here, you can send the data to the backend.
-    // Example:
-    // fetch('http://localhost:5000/api/external-marks', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(marks),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log('Success:', data);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
+    // Backend submission logic here
   };
 
   return (
-    <div className="p-5">
-      <h1 className="text-4xl font-bold mb-5">External Marks</h1>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className=" rounded-lg p-6 w-full max-w-3xl">
+        <h1 className="text-3xl font-bold text-center mb-5">Add Internal Marks</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-lg font-medium mb-1">Roll No</label>
-          <input
-            type="text"
-            name="rollNo"
-            value={marks.rollNo}
-            onChange={handleChange}
-            className="border border-gray-300 p-2 rounded w-full"
-            disabled
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-lg font-medium mb-1">Roll No</label>
+            <input
+              type="text"
+              name="rollNo"
+              value={marks.rollNo}
+              onChange={handleChange}
+              className="border border-gray-300 p-3 rounded w-full bg-gray-100"
+              disabled
+            />
+          </div>
 
-        <div>
-          <label className="block text-lg font-medium mb-1">Student Name</label>
-          <input
-            type="text"
-            name="studentName"
-            value={marks.studentName}
-            onChange={handleChange}
-            className="border border-gray-300 p-2 rounded w-full"
-            disabled
-          />
-        </div>
+          <div>
+            <label className="block text-lg font-medium mb-1">Student Name</label>
+            <input
+              type="text"
+              name="studentName"
+              value={marks.studentName}
+              onChange={handleChange}
+              className="border border-gray-300 p-3 rounded w-full bg-gray-100"
+              disabled
+            />
+          </div>
 
-        <div>
-          <h2 className="text-2xl font-bold mb-2">Internal 1</h2>
-          <label className="block">Marks</label>
-          <input
-            type="number"
-            name="internal1"
-            value={marks.internal1}
-            onChange={handleChange}
-            placeholder="Internal Mark 1"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
+          {/* Internal 1 */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-3">Internal 1</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block font-medium">Marks</label>
+                <input
+                  type="number"
+                  name="internal1"
+                  value={marks.internal1}
+                  onChange={handleChange}
+                  placeholder="Internal Mark 1"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Quiz 1</label>
+                <input
+                  type="number"
+                  name="quiz1"
+                  value={marks.quiz1}
+                  onChange={handleChange}
+                  placeholder="Quiz 1"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Assignment 1</label>
+                <input
+                  type="number"
+                  name="assignment1"
+                  value={marks.assignment1}
+                  onChange={handleChange}
+                  placeholder="Assignment 1"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+            </div>
+          </div>
 
-          <label className="block">Quiz 1</label>
-          <input
-            type="number"
-            name="quiz1"
-            value={marks.quiz1}
-            onChange={handleChange}
-            placeholder="Quiz 1"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
+          {/* Internal 2 */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-3">Internal 2</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block font-medium">Marks</label>
+                <input
+                  type="number"
+                  name="internal2"
+                  value={marks.internal2}
+                  onChange={handleChange}
+                  placeholder="Internal Mark 2"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Quiz 2</label>
+                <input
+                  type="number"
+                  name="quiz2"
+                  value={marks.quiz2}
+                  onChange={handleChange}
+                  placeholder="Quiz 2"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Assignment 2</label>
+                <input
+                  type="number"
+                  name="assignment2"
+                  value={marks.assignment2}
+                  onChange={handleChange}
+                  placeholder="Assignment 2"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+            </div>
+          </div>
 
-          <label className="block">Assignment 1</label>
-          <input
-            type="number"
-            name="assignment1"
-            value={marks.assignment1}
-            onChange={handleChange}
-            placeholder="Assignment 1"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-        </div>
+          {/* Model Exam */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-3">Model Exam</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">Marks</label>
+                <input
+                  type="number"
+                  name="model"
+                  value={marks.model}
+                  onChange={handleChange}
+                  placeholder="Model Exam"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Quiz 3</label>
+                <input
+                  type="number"
+                  name="quiz3"
+                  value={marks.quiz3}
+                  onChange={handleChange}
+                  placeholder="Quiz 3"
+                  className="border border-gray-300 p-3 rounded w-full"
+                />
+              </div>
+            </div>
+          </div>
 
-        <div>
-          <h2 className="text-2xl font-bold mb-2">Internal 2</h2>
-          <label className="block">Marks</label>
-          <input
-            type="number"
-            name="internal2"
-            value={marks.internal2}
-            onChange={handleChange}
-            placeholder="Internal Mark 2"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-
-          <label className="block">Quiz 2</label>
-          <input
-            type="number"
-            name="quiz2"
-            value={marks.quiz2}
-            onChange={handleChange}
-            placeholder="Quiz 2"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-
-          <label className="block">Assignment 2</label>
-          <input
-            type="number"
-            name="assignment2"
-            value={marks.assignment2}
-            onChange={handleChange}
-            placeholder="Assignment 2"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold mb-2">Model Exam</h2>
-          <label className="block">Marks</label>
-          <input
-            type="number"
-            name="model"
-            value={marks.model}
-            onChange={handleChange}
-            placeholder="Model Exam"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-
-          <label className="block">Quiz 3</label>
-          <input
-            type="number"
-            name="quiz3"
-            value={marks.quiz3}
-            onChange={handleChange}
-            placeholder="Quiz 3"
-            className="border border-gray-300 p-2 rounded w-full"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Submit
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-3 rounded font-semibold hover:bg-blue-600 transition duration-300"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

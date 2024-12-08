@@ -182,6 +182,187 @@
 //     }
 //   });
   
+
+
+
+
+// import React, { useState, useEffect } from "react";
+
+// const AddStudent = () => {
+//   const [studentName, setStudentName] = useState("");
+//   const [rollNo, setRollNo] = useState("");
+//   const [students, setStudents] = useState([]);
+//   const [message, setMessage] = useState("");
+//   const [editId, setEditId] = useState(null);
+
+//   // Fetch list of students from the backend
+//   useEffect(() => {
+//     const fetchStudents = async () => {
+//       try {
+//         const response = await fetch("https://backendsampleclg.onrender.com/studentdetails");
+//         if (!response.ok) throw new Error("Failed to fetch students");
+//         const data = await response.json();
+//         setStudents(data);
+//       } catch (error) {
+//         console.error("Error fetching students:", error);
+//       }
+//     };
+//     fetchStudents();
+//   }, []);
+
+//   // Handle form submission (add or update student)
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const studentData = { username: studentName, password: rollNo };
+
+//     try {
+//       if (editId) {
+//         // Edit student if editId is set
+//         const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${editId}`, {
+//           method: "PUT",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(studentData),
+//         });
+
+//         if (response.ok) {
+//           setMessage("Student updated successfully!");
+//           setStudents(students.map((student) => student._id === editId ? { ...student, ...studentData } : student));
+//           setEditId(null); // Reset edit mode
+//         } else {
+//           setMessage("Failed to update student.");
+//         }
+//       } else {
+//         // Add new student if editId is not set
+//         const response = await fetch("https://backendsampleclg.onrender.com/studentdetails", {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(studentData),
+//         });
+
+//         if (response.ok) {
+//           setMessage("Student added successfully!");
+//           setStudents([...students, studentData]);
+//         } else {
+//           setMessage("Failed to add student.");
+//         }
+//       }
+
+//       setStudentName("");
+//       setRollNo("");
+//     } catch (error) {
+//       console.error("Error:", error);
+//       setMessage("An error occurred.");
+//     }
+//   };
+
+//   // Handle editing a student
+//   const handleEdit = (student) => {
+//     setStudentName(student.username);
+//     setRollNo(student.password);
+//     setEditId(student._id);
+//   };
+
+//   // Handle deleting a student
+//   const handleDelete = async (id) => {
+//     try {
+//       const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${id}`, {
+//         method: "DELETE",
+//       });
+
+//       if (response.ok) {
+//         setStudents(students.filter((student) => student._id !== id));
+//         setMessage("Student deleted successfully!");
+//       } else {
+//         setMessage("Failed to delete student.");
+//       }
+//     } catch (error) {
+//       console.error("Error deleting student:", error);
+//       setMessage("An error occurred while deleting the student.");
+//     }
+//   };
+
+//   return (
+//     <div className="p-5">
+//       <h1 className="text-4xl font-bold mb-5">
+//         {editId ? "Edit Student" : "Add Student"}
+//       </h1>
+
+//       <form onSubmit={handleSubmit} className="space-y-4">
+//         <div>
+//           <label className="block text-lg font-medium mb-1">Student Name</label>
+//           <input
+//             type="text"
+//             value={studentName}
+//             onChange={(e) => setStudentName(e.target.value)}
+//             placeholder="Enter student name"
+//             className="border border-gray-300 p-2 rounded w-full"
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label className="block text-lg font-medium mb-1">Password</label>
+//           <input
+//             type="text"
+//             value={rollNo}
+//             onChange={(e) => setRollNo(e.target.value)}
+//             placeholder="Enter password"
+//             className="border border-gray-300 p-2 rounded w-full"
+//             required
+//           />
+//         </div>
+//         <button
+//           type="submit"
+//           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+//         >
+//           {editId ? "Update Student" : "Add Student"}
+//         </button>
+//       </form>
+
+//       {message && <p className="mt-4 text-lg">{message}</p>}
+
+//       <h2 className="text-2xl font-bold mt-10">Stored Students</h2>
+//       {students.length > 0 ? (
+//         <table className="table-auto w-full border-collapse border border-gray-200 mt-5">
+//           <thead>
+//             <tr>
+//               <th className="border border-gray-300 p-2">Name</th>
+//               <th className="border border-gray-300 p-2">Password</th>
+//               <th className="border border-gray-300 p-2">Actions</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {students.map((student) => (
+//               <tr key={student._id}>
+//                 <td className="border border-gray-300 p-2">{student.username}</td>
+//                 <td className="border border-gray-300 p-2">{student.password}</td>
+//                 <td className="border border-gray-300 p-2 space-x-2">
+//                   <button
+//                     onClick={() => handleEdit(student)}
+//                     className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+//                   >
+//                     Edit
+//                   </button>
+//                   <button
+//                     onClick={() => handleDelete(student._id)}
+//                     className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+//                   >
+//                     Delete
+//                   </button>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       ) : (
+//         <p className="mt-5 text-gray-500">No students added yet.</p>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default AddStudent;
+
+
 import React, { useState, useEffect } from "react";
 
 const AddStudent = () => {
@@ -191,11 +372,11 @@ const AddStudent = () => {
   const [message, setMessage] = useState("");
   const [editId, setEditId] = useState(null);
 
-  // Fetch list of students from the backend
+  // Fetch students
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await fetch("http://localhost:3000/studentdetails");
+        const response = await fetch("https://backendsampleclg.onrender.com/studentdetails");
         if (!response.ok) throw new Error("Failed to fetch students");
         const data = await response.json();
         setStudents(data);
@@ -206,15 +387,14 @@ const AddStudent = () => {
     fetchStudents();
   }, []);
 
-  // Handle form submission (add or update student)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const studentData = { username: studentName, password: rollNo };
 
     try {
       if (editId) {
-        // Edit student if editId is set
-        const response = await fetch(`http://localhost:3000/studentdetails/${editId}`, {
+        // Update student
+        const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(studentData),
@@ -222,27 +402,31 @@ const AddStudent = () => {
 
         if (response.ok) {
           setMessage("Student updated successfully!");
-          setStudents(students.map((student) => student._id === editId ? { ...student, ...studentData } : student));
-          setEditId(null); // Reset edit mode
+          setStudents((prev) =>
+            prev.map((student) =>
+              student._id === editId ? { ...student, ...studentData } : student
+            )
+          );
+          setEditId(null);
         } else {
           setMessage("Failed to update student.");
         }
       } else {
-        // Add new student if editId is not set
-        const response = await fetch("http://localhost:3000/studentdetails", {
+        // Add student
+        const response = await fetch("https://backendsampleclg.onrender.com/studentdetails", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(studentData),
         });
 
         if (response.ok) {
+          const newStudent = await response.json();
           setMessage("Student added successfully!");
-          setStudents([...students, studentData]);
+          setStudents((prev) => [...prev, newStudent]);
         } else {
           setMessage("Failed to add student.");
         }
       }
-
       setStudentName("");
       setRollNo("");
     } catch (error) {
@@ -251,96 +435,93 @@ const AddStudent = () => {
     }
   };
 
-  // Handle editing a student
   const handleEdit = (student) => {
     setStudentName(student.username);
     setRollNo(student.password);
     setEditId(student._id);
   };
 
-  // Handle deleting a student
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/studentdetails/${id}`, {
+      const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${id}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
-        setStudents(students.filter((student) => student._id !== id));
+        setStudents((prev) => prev.filter((student) => student._id !== id));
         setMessage("Student deleted successfully!");
       } else {
         setMessage("Failed to delete student.");
       }
     } catch (error) {
       console.error("Error deleting student:", error);
-      setMessage("An error occurred while deleting the student.");
+      setMessage("An error occurred.");
     }
   };
 
   return (
-    <div className="p-5">
-      <h1 className="text-4xl font-bold mb-5">
-        {editId ? "Edit Student" : "Add Student"}
-      </h1>
+    <div className="max-w-4xl mx-auto pl-11 rounded-lg">
+      <h1 className="text-3xl font-bold text-center mb-6">{editId ? "Edit Student" : "Add Student"}</h1>
 
+      {/* Form Section */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-lg font-medium mb-1">Student Name</label>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium mb-1">Student Name</label>
           <input
             type="text"
             value={studentName}
             onChange={(e) => setStudentName(e.target.value)}
             placeholder="Enter student name"
-            className="border border-gray-300 p-2 rounded w-full"
+            className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
-        <div>
-          <label className="block text-lg font-medium mb-1">Password</label>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium mb-1">Roll No</label>
           <input
             type="text"
             value={rollNo}
             onChange={(e) => setRollNo(e.target.value)}
-            placeholder="Enter password"
-            className="border border-gray-300 p-2 rounded w-full"
+            placeholder="Enter roll number"
+            className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
         >
           {editId ? "Update Student" : "Add Student"}
         </button>
       </form>
+      {message && <p className="mt-4 text-center text-lg text-green-500">{message}</p>}
 
-      {message && <p className="mt-4 text-lg">{message}</p>}
-
-      <h2 className="text-2xl font-bold mt-10">Stored Students</h2>
+      {/* Table Section */}
+      <h2 className="text-2xl font-bold mt-8 mb-4">Students List</h2>
       {students.length > 0 ? (
-        <table className="table-auto w-full border-collapse border border-gray-200 mt-5">
-          <thead>
+        <table className="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
+          <thead className="bg-blue-500 text-white">
             <tr>
-              <th className="border border-gray-300 p-2">Name</th>
-              <th className="border border-gray-300 p-2">Password</th>
-              <th className="border border-gray-300 p-2">Actions</th>
+              <th className="p-3">Name</th>
+              <th className="p-3">Roll No</th>
+              <th className="p-3">Actions</th>
             </tr>
           </thead>
           <tbody>
             {students.map((student) => (
-              <tr key={student._id}>
-                <td className="border border-gray-300 p-2">{student.username}</td>
-                <td className="border border-gray-300 p-2">{student.password}</td>
-                <td className="border border-gray-300 p-2 space-x-2">
+              <tr key={student._id} className="border-t">
+                <td className="p-3">{student.username}</td>
+                <td className="p-3">{student.password}</td>
+                <td className="p-3 space-x-2">
                   <button
                     onClick={() => handleEdit(student)}
-                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(student._id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
                   >
                     Delete
                   </button>
@@ -350,7 +531,7 @@ const AddStudent = () => {
           </tbody>
         </table>
       ) : (
-        <p className="mt-5 text-gray-500">No students added yet.</p>
+        <p className="text-gray-500 mt-4">No students added yet.</p>
       )}
     </div>
   );
