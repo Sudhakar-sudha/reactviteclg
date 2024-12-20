@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddInternalMarks = () => {
+  const [students, setStudents] = useState([]); // To store the fetched student details
   const [marks, setMarks] = useState({
     rollNo: '',
     studentName: '',
@@ -15,18 +16,35 @@ const AddInternalMarks = () => {
   });
 
   useEffect(() => {
-    // Simulated fetched data
-    const fetchedStudentData = {
-      rollNo: '123456',
-      studentName: 'John Doe',
+    // Fetch student details from the backend
+    const fetchStudentDetails = async () => {
+      try {
+        const response = await fetch('https://backendsampleclg.onrender.com/studentdetails');
+        const data = await response.json();
+        console.log(data);
+        setStudents(data); // Assuming the response is an array of student objects
+      } catch (error) {
+        console.error('Error fetching student details:', error);
+      }
     };
 
+    fetchStudentDetails();
+  }, []);
+
+  const handleRollNoChange = (e) => {
+    const selectedRoll = e.target.value;
+  
+    // Find the student by roll number
+    const student = students.find((student) => student.password === selectedRoll);
+  
+    // Update the state with the selected roll number and student name
     setMarks((prevMarks) => ({
       ...prevMarks,
-      rollNo: fetchedStudentData.rollNo,
-      studentName: fetchedStudentData.studentName,
+      rollNo: selectedRoll,
+      studentName: student ? student.username : '', // Set student name if found
     }));
-  }, []);
+  };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,41 +54,68 @@ const AddInternalMarks = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Marks:', marks);
-    // Backend submission logic here
+  
+    try {
+      const response = await fetch('https://backendsampleclg.onrender.com/savemarks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(marks), // Send the marks data as JSON
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to save marks');
+      }
+  
+      const data = await response.json();
+      console.log('Marks saved successfully:', data);
+      // Optionally reset the form or show a success message
+    } catch (error) {
+      console.error('Error saving marks:', error);
+      // Optionally show an error message
+    }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className=" rounded-lg p-6 w-full max-w-3xl">
+      <div className="rounded-lg p-6 w-full max-w-3xl">
         <h1 className="text-3xl font-bold text-center mb-5">Add Internal Marks</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Dropdown for selecting Roll Number */}
           <div>
-            <label className="block text-lg font-medium mb-1">Roll No</label>
-            <input
-              type="text"
-              name="rollNo"
-              value={marks.rollNo}
-              onChange={handleChange}
-              className="border border-gray-300 p-3 rounded w-full bg-gray-100"
-              disabled
-            />
-          </div>
+    <label className="block text-lg font-medium mb-1">Roll No</label>
+    <select
+      name="rollNo"
+      value={marks.rollNo}
+      onChange={handleRollNoChange}
+      className="border border-gray-300 p-3 rounded w-full bg-gray-100"
+    >
+      <option value="" disabled>Select Roll No</option>
+      {students.map((student) => (
+        <option key={student.password} value={student.password}>
+          {student.password}
+        </option>
+      ))}
+    </select>
+  </div>
 
-          <div>
-            <label className="block text-lg font-medium mb-1">Student Name</label>
-            <input
-              type="text"
-              name="studentName"
-              value={marks.studentName}
-              onChange={handleChange}
-              className="border border-gray-300 p-3 rounded w-full bg-gray-100"
-              disabled
-            />
-          </div>
+  {/* Display Student Name based on selected Roll No */}
+  <div>
+    <label className="block text-lg font-medium mb-1">Student Name</label>
+    <input
+      type="text"
+      name="studentName"
+      value={marks.studentName}
+      readOnly
+      className="border border-gray-300 p-3 rounded w-full bg-gray-100"
+    />
+  </div>
+
 
           {/* Internal 1 */}
           <div>
