@@ -26,6 +26,14 @@ const Navbar = () => {
         </li>
         <li>
           <Link
+            to="/add-subject"
+            className="text-2xl font-medium hover:text-blue-900 transition-colors"
+          >
+            Add Subject
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/internal-marks"
             className="text-2xl font-medium hover:text-blue-900 transition-colors"
           >

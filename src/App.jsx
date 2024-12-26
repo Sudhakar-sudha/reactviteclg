@@ -8,6 +8,7 @@ import AddInternalMarks from './Components/AddInternalMarks';
 import Result from './Components/Result';
 import Details from './Components/Details';
 import './index.css'
+import AddSubject from './Components/AddSubject';
 // import AdminSideBar from './Pages/AdminSideBar';
 // import ProductSellers from './Pages/ProductSellers';
 // import Customers from './Pages/Customers';
@@ -27,6 +28,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/add-student" element={<AddStudent />} />
+            <Route path="/add-subject" element={<AddSubject />} />
             <Route path="/internal-marks" element={<AddInternalMarks />} />
             <Route path="/external-marks" element={<AddExternalMarks />} />
             <Route path="/result" element={<Result />} />
