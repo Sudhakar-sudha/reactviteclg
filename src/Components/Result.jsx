@@ -169,8 +169,10 @@ const Result = () => {
     const fetchMarks = async () => {
       try {
         const [internalResponse, externalResponse] = await Promise.all([
-          fetch('http://localhost:3000/savemarks'),
-          fetch('http://localhost:3000/addExternalMark')
+          fetch('https://backendsampleclg.onrender.com/savemarks'),
+          fetch('https://backendsampleclg.onrender.com/addExternalMark')
+          // fetch('http://localhost:3000/savemarks'),
+          // fetch('http://localhost:3000/addExternalMark')
         ]);
 
         if (!internalResponse.ok || !externalResponse.ok) {
@@ -200,7 +202,8 @@ const Result = () => {
 
   // Fetch the list of students on component mount
   useEffect(() => {
-    fetch('http://localhost:3000/studentdetails')
+    fetch('https://backendsampleclg.onrender.com/studentdetails')
+    // fetch('http://localhost:3000/studentdetails')
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -235,8 +238,8 @@ const Result = () => {
 
     if (!studentMarks) return 'Result not available'; // Handle case when marks are not available
 
-    const internalPass = studentMarks.calculatedMarks > 19;
-    const externalPass = studentMarks.externalMarks !== 'N/A' && studentMarks.externalMarks > 21;
+    const internalPass = studentMarks.calculatedMarks >= 19;
+    const externalPass = studentMarks.externalMarks !== 'N/A' && studentMarks.externalMarks >= 21;
 
     return internalPass && externalPass ? 'Pass' : 'Fail';
   };

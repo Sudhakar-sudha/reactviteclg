@@ -119,8 +119,10 @@ const ViewInternalMarks = () => {
     const fetchMarks = async () => {
       try {
         const [internalResponse, externalResponse] = await Promise.all([
-          fetch('http://localhost:3000/savemarks'),
-          fetch('http://localhost:3000/addExternalMark')
+          fetch('https://backendsampleclg.onrender.com/savemarks'),
+          fetch('https://backendsampleclg.onrender.com/addExternalMark')
+          // fetch('http://localhost:3000/savemarks'),
+          // fetch('http://localhost:3000/addExternalMark')
         ]);
 
         if (!internalResponse.ok || !externalResponse.ok) {
@@ -132,7 +134,7 @@ const ViewInternalMarks = () => {
 
         // Create a mapping of external marks by studentId
         const externalMarksMap = externalMarks.reduce((map, student) => {
-          map[student.studentId] = student.externalMarks;
+          map[student.rollNo] = student.externalMarks;
           return map;
         }, {});
 
@@ -159,9 +161,11 @@ const ViewInternalMarks = () => {
 
   // Function to calculate total marks
   const calculateTotalMarks = (internalMarks, externalMarks) => {
-    const externalMarksNumber = Number(externalMarks); // Convert external marks to a number
-    return internalMarks + (isNaN(externalMarksNumber) ? 0 : externalMarksNumber); // Use 0 if not a valid number
+    const internalMarksNumber = parseFloat(internalMarks) || 0; // Convert to number or default to 0
+    const externalMarksNumber = parseFloat(externalMarks) || 0; // Convert to number or default to 0
+    return internalMarksNumber + externalMarksNumber; // Perform arithmetic addition
   };
+  
 
   // Function to calculate grade based on total marks
   const calculateGrade = (totalMarks) => {

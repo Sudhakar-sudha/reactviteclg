@@ -21,8 +21,8 @@ const AddInternalMarks = () => {
   useEffect(() => {
     const fetchStudentDetails = async () => {
       try {
-        // const response = await fetch('https://backendsampleclg.onrender.com/studentdetails');
-        const response = await fetch('http://localhost:3000/studentdetails');
+        const response = await fetch('https://backendsampleclg.onrender.com/studentdetails');
+        // const response = await fetch('http://localhost:3000/studentdetails');
         const data = await response.json();
         setStudents(data);
       } catch (error) {
@@ -127,8 +127,8 @@ const AddInternalMarks = () => {
     const totalInternal = calculateTotalInternalMarks();
 
     try {
-      // const response = await fetch('https://backendsampleclg.onrender.com/savemarks', {
-        const response = await fetch('http://localhost:3000/savemarks', {
+      const response = await fetch('https://backendsampleclg.onrender.com/savemarks', {
+        // const response = await fetch('http://localhost:3000/savemarks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -13,8 +13,8 @@ const AddExternalMarks = () => {
   useEffect(() => {
     const fetchStudentDetails = async () => {
       try {
-        const response = await fetch('http://localhost:3000/studentdetails');
-        // const response = await fetch('https://backendsampleclg.onrender.com/studentdetails');
+        // const response = await fetch('http://localhost:3000/studentdetails');
+        const response = await fetch('https://backendsampleclg.onrender.com/studentdetails');
         if (!response.ok) throw new Error('Failed to fetch student details');
         const data = await response.json();
         setStudents(data);
@@ -67,8 +67,8 @@ const AddExternalMarks = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch('http://localhost:3000/addExternalMark', {
-        // const response = await fetch('https://backendsampleclg.onrender.com/addExternalMark', {
+      // const response = await fetch('http://localhost:3000/addExternalMark', {
+        const response = await fetch('https://backendsampleclg.onrender.com/addExternalMark', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
