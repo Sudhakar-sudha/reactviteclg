@@ -11,7 +11,8 @@ const AddSubject = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await fetch("https://backendsampleclg.onrender.com/subjectdetails");
+        const response = await fetch("http://localhost:3000/subjectdetails");
+        // const response = await fetch("https://backendsampleclg.onrender.com/subjectdetails");
         if (!response.ok) throw new Error("Failed to fetch subjects");
         const data = await response.json();
         setSubjects(data);
@@ -29,7 +30,8 @@ const AddSubject = () => {
     try {
       if (editId) {
         // Update subject
-        const response = await fetch(`https://backendsampleclg.onrender.com/subjectdetails/${editId}`, {
+        const response = await fetch(`http://localhost:3000/subjectdetails/${editId}`, {
+          // const response = await fetch(`https://backendsampleclg.onrender.com/subjectdetails/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(subjectData),
@@ -48,7 +50,8 @@ const AddSubject = () => {
         }
       } else {
         // Add subject
-        const response = await fetch("https://backendsampleclg.onrender.com/subjectdetails", {
+        const response = await fetch("http://localhost:3000/subjectdetails", {
+          // const response = await fetch("https://backendsampleclg.onrender.com/subjectdetails", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(subjectData),
@@ -78,7 +81,8 @@ const AddSubject = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`https://backendsampleclg.onrender.com/subjectdetails/${id}`, {
+      const response = await fetch(`http://localhost:3000/subjectdetails/${id}`, {
+        // const response = await fetch(`https://backendsampleclg.onrender.com/subjectdetails/${id}`, {
         method: "DELETE",
       });
 
