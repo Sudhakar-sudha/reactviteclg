@@ -13,8 +13,8 @@ const AddStudent = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await fetch("http://localhost:3000/studentdetails");
-        // const response = await fetch("https://backendsampleclg.onrender.com/studentdetails");
+        // const response = await fetch("http://localhost:3000/studentdetails");
+        const response = await fetch("https://backendsampleclg.onrender.com/studentdetails");
         if (!response.ok) throw new Error("Failed to fetch students");
         const data = await response.json();
         setStudents(data);
@@ -32,8 +32,8 @@ const AddStudent = () => {
     try {
       if (editId) {
         // Update student
-        const response = await fetch(`http://localhost:3000/studentdetails/${editId}`, {
-          // const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${editId}`, {
+        // const response = await fetch(`http://localhost:3000/studentdetails/${editId}`, {
+          const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${editId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(studentData),
@@ -54,8 +54,8 @@ const AddStudent = () => {
         }
       } else {
         // Add student
-        const response = await fetch('http://localhost:3000/studentdetails', {
-          // const response = await fetch('https://backendsampleclg.onrender.com/studentdetails', {
+        // const response = await fetch('http://localhost:3000/studentdetails', {
+          const response = await fetch('https://backendsampleclg.onrender.com/studentdetails', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(studentData),
@@ -86,8 +86,8 @@ const AddStudent = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/studentdetails/${id}`, {
-        // const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${id}`, {
+      // const response = await fetch(`http://localhost:3000/studentdetails/${id}`, {
+        const response = await fetch(`https://backendsampleclg.onrender.com/studentdetails/${id}`, {
         method: "DELETE",
       });
 
