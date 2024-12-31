@@ -7,8 +7,8 @@ const Details = () => {
   // Fetch student details from the backend
   useEffect(() => {
     // Replace with your backend API endpoint
-    fetch(' http://localhost:3000/studentdetails')
-    // fetch('https://backendsampleclg.onrender.com/studentdetails')
+    // fetch(' http://localhost:3000/studentdetails')
+    fetch('https://backendsampleclg.onrender.com/studentdetails')
    
       .then((response) => response.json())
       .then((data) => {

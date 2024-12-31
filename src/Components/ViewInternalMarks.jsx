@@ -9,8 +9,10 @@ export const ViewInternalMarks = () => {
     const fetchMarks = async () => {
       try {
         const [internalResponse, externalResponse] = await Promise.all([
-          fetch('http://localhost:3000/savemarks'),
-          fetch('http://localhost:3000/addExternalMark')
+          fetch('https://backendsampleclg.onrender.com/savemarks'),
+          fetch('https://backendsampleclg.onrender.com/addExternalMark')
+          // fetch('http://localhost:3000/savemarks'),
+          // fetch('http://localhost:3000/addExternalMark')
         ]);
 
         if (!internalResponse.ok || !externalResponse.ok) {

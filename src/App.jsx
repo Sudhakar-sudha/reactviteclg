@@ -41,8 +41,8 @@ const App = () => {
     </Router>
 
 //  <div>
-  // <Image/>
-  // <FormDataDisplay/>
+//   <Image/>
+//   <FormDataDisplay/>
 // </div> 
 
   //   <Router>
