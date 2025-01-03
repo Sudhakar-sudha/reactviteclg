@@ -11,6 +11,7 @@ import './index.css'
 import AddSubject from './Components/AddSubject';
 import Image from './Components/Image';
 import FormDataDisplay from './Components/FormDataDisplay'
+import TimelineForm from './Components/TimelineForm'
 // import AdminSideBar from './Pages/AdminSideBar';
 // import ProductSellers from './Pages/ProductSellers';
 // import Customers from './Pages/Customers';
@@ -21,30 +22,34 @@ import FormDataDisplay from './Components/FormDataDisplay'
 
 const App = () => {
   return (
-    <Router>
-      <div className="flex">
-        {/* Sidebar Navigation */}
-        <Navbar />
-        {/* Main Content */}
-        <div className="flex-grow p-5">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/add-student" element={<AddStudent />} />
-            <Route path="/add-subject" element={<AddSubject />} />
-            <Route path="/internal-marks" element={<AddInternalMarks />} />
-            <Route path="/external-marks" element={<AddExternalMarks />} />
-            <Route path="/result" element={<Result />} />
-            <Route path="/details" element={<Details />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+    // <Router>
+    //   <div className="flex">
+    //     {/* Sidebar Navigation */}
+    //     <Navbar />
+    //     {/* Main Content */}
+    //     <div className="flex-grow p-5">
+    //       <Routes>
+    //         <Route path="/" element={<Home />} />
+    //         <Route path="/add-student" element={<AddStudent />} />
+    //         <Route path="/add-subject" element={<AddSubject />} />
+    //         <Route path="/internal-marks" element={<AddInternalMarks />} />
+    //         <Route path="/external-marks" element={<AddExternalMarks />} />
+    //         <Route path="/result" element={<Result />} />
+    //         <Route path="/details" element={<Details />} />
+    //       </Routes>
+    //     </div>
+    //   </div>
+    // </Router>
 
 //  <div>
 //   <Image/>
 //   <FormDataDisplay/>
 // </div> 
 
+
+<div>
+  <TimelineForm/>
+</div>
   //   <Router>
   //   <div className="flex">
   //     {/* Sidebar Navigation */}
