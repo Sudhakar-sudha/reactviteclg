@@ -12,6 +12,7 @@ import AddSubject from './Components/AddSubject';
 import Image from './Components/Image';
 import FormDataDisplay from './Components/FormDataDisplay'
 import TimelineForm from './Components/TimelineForm'
+import Landingpage from './Components/Landingpage'
 // import AdminSideBar from './Pages/AdminSideBar';
 // import ProductSellers from './Pages/ProductSellers';
 // import Customers from './Pages/Customers';
@@ -49,6 +50,7 @@ const App = () => {
 
 <div>
   <TimelineForm/>
+  <Landingpage/>
 </div>
   //   <Router>
   //   <div className="flex">
