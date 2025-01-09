@@ -42,16 +42,18 @@ const App = () => {
     //   </div>
     // </Router>
 
-//  <div>
-//   <Image/>
-//   <FormDataDisplay/>
-// </div> 
+ <div>
+  <Image/>
+  <FormDataDisplay/>
+</div> 
 
 
-<div>
-  <TimelineForm/>
-  <Landingpage/>
-</div>
+// <div>
+//   <TimelineForm/>
+//   <Landingpage/>
+// </div>
+
+
   //   <Router>
   //   <div className="flex">
   //     {/* Sidebar Navigation */}
