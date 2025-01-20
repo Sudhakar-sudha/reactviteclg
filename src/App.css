@@ -1,0 +1,127 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace; /* Retro font for CRT effect */
+  }
+  
+  .kerala-container {
+    display: flex; /* Align letters in a single row */
+    justify-content: center;
+    align-items: center;
+    font-size: 12rem; /* Adjust for larger text */
+    font-weight: bold;
+    color: transparent; /* Ensure the text itself is invisible */
+    position: relative;
+  }
+  
+  /* Individual Letters */
+  .letter {
+    display: inline-block;
+    color: white;
+    /* background: url('./assets/image1.jpg') no-repeat center center fixed; */
+    background-size: cover;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    animation: fade-in 2s ease-in-out forwards, crt-glow 0.1s infinite alternate;
+    transform: translate(0, 0); /* Default position */
+  }
+  
+  /* Specific Animations for Each Letter */
+  .letter:nth-child(1) {
+    animation-delay: 0.2s, 2s;
+    transform: translateX(150%);
+    animation-name: move-in-right, crt-glow;
+  }
+  
+  .letter:nth-child(2) {
+    animation-delay: 0.4s, 2s;
+    transform: translateX(-150%);
+    animation-name: move-in-left, crt-glow;
+  }
+  
+  .letter:nth-child(3) {
+    animation-delay: 0.6s, 2s;
+    transform: translateY(-150%);
+    animation-name: move-in-up, crt-glow;
+  }
+  
+  .letter:nth-child(4) {
+    animation-delay: 0.8s, 2s;
+    transform: translateY(150%);
+    animation-name: move-in-down, crt-glow;
+  }
+  
+  .letter:nth-child(5) {
+    animation-delay: 1s, 2s;
+    transform: translateX(150%);
+    animation-name: move-in-right, crt-glow;
+  }
+  
+  .letter:nth-child(6) {
+    animation-delay: 1.2s, 2s;
+    transform: translateX(-150%);
+    animation-name: move-in-left, crt-glow;
+  }
+  
+  /* Keyframes for Letter Animations */
+  @keyframes move-in-right {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes move-in-left {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes move-in-up {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes move-in-down {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* CRT Glow Effect */
+  @keyframes crt-glow {
+    0% {
+      text-shadow: 
+        0 0 2px #0f0,
+        0 0 4px #0f0,
+        0 0 8px #0f0,
+        0 0 16px #0f0;
+    }
+    100% {
+      text-shadow: 
+        0 0 4px #0f0,
+        0 0 8px #0f0,
+        0 0 16px #0f0,
+        0 0 32px #0f0;
+    }
+  }
+  
+  /* Scan Lines Effect */
+  .kerala-container {
+    filter: contrast(1.2) brightness(1.1);
+  }
+  
+  /* Fade-In Effect */
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+
+
