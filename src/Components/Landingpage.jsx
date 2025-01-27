@@ -50,9 +50,16 @@ const Landingpage = () => {
                 className="text-black" 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} // Toggle the mobile menu
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+               
+                    <svg>
+                      <path
+                        strokeLinecap="round"       // Corrected
+                        strokeLinejoin="round"      // Corrected
+                        strokeWidth="2"             // Corrected
+                        d="M10 20L20 10"
+                      />
+                    </svg>
+
               </button>
               
               {/* Dropdown menu for mobile */}
